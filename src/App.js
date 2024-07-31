@@ -9,32 +9,58 @@ Highchart3D(Highcharts);
 
 const options = {
   chart: {
-    type: "column",
+    type: "pie",
     options3d: {
       enabled: true,
-      alpha: 27,
-      beta: 20,
-      depth: 40,
+      alpha: 45,
+      beta: 0,
     },
   },
-  title: {
-    text: "My chart",
+  subtitle: {
+    text:
+      "Source: " +
+      '<a href="https://www.counterpointresearch.com/global-smartphone-share/"' +
+      'target="_blank">Counterpoint Research</a>',
+    align: "left",
+  },
+  accessibility: {
+    point: {
+      valueSuffix: "%",
+    },
+  },
+  tooltip: {
+    pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: "pointer",
+      depth: 35,
+      dataLabels: {
+        enabled: true,
+        format: "{point.name}",
+      },
+    },
   },
   series: [
     {
-      data: [5, 7, 3],
+      type: "pie",
+      name: "Share",
+      data: [
+        ["Product 1", 23],
+        ["Product 2", 18],
+        {
+          name: "Product 3",
+          y: 12,
+          sliced: true,
+          selected: true,
+        },
+        ["Product 4*", 9],
+        ["Product 5", 8],
+        ["Product 6", 30],
+      ],
     },
   ],
-  xAxis: {
-    labels: {
-      enabled: false,
-    },
-  },
-  yAxis: {
-    labels: {
-      enabled: false,
-    },
-  },
 };
 
 function App() {
